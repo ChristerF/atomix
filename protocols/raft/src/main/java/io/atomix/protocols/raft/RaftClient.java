@@ -120,7 +120,12 @@ public interface RaftClient {
    *
    * @return A new proxy builder.
    */
-  RaftProxy.Builder newProxyBuilder();
+  RaftProxy.Builder proxyBuilder();
+
+  @Deprecated
+  default RaftProxy.Builder newProxyBuilder() {
+    return proxyBuilder();
+  }
 
   /**
    * Connects the client to Raft cluster via the default server address.

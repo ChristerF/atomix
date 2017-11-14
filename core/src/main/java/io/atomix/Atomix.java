@@ -38,8 +38,10 @@ import io.atomix.partition.PartitionService;
 import io.atomix.partition.impl.DefaultPartitionService;
 import io.atomix.partition.impl.RaftPartition;
 import io.atomix.primitives.DistributedPrimitive.Type;
+import io.atomix.primitives.DistributedPrimitiveBuilder;
 import io.atomix.primitives.DistributedPrimitiveCreator;
 import io.atomix.primitives.PrimitiveService;
+import io.atomix.primitives.PrimitiveType;
 import io.atomix.primitives.counter.AtomicCounterBuilder;
 import io.atomix.primitives.generator.AtomicIdGeneratorBuilder;
 import io.atomix.primitives.impl.FederatedPrimitiveService;
@@ -234,6 +236,11 @@ public class Atomix implements PrimitiveService, Managed<Atomix> {
   @Override
   public <E> WorkQueueBuilder<E> workQueueBuilder() {
     return primitives.workQueueBuilder();
+  }
+
+  @Override
+  public <B extends DistributedPrimitiveBuilder> B primitiveBuilder(PrimitiveType<? super B, ?, ?> type) {
+    return primitives.primitiveBuilder(type);
   }
 
   @Override

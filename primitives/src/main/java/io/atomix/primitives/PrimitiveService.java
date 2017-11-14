@@ -132,6 +132,14 @@ public interface PrimitiveService {
   <E> WorkQueueBuilder<E> workQueueBuilder();
 
   /**
+   * Returns a new primitive builder.
+   *
+   * @param type the primitive type
+   * @return the primitive builder
+   */
+  <B extends DistributedPrimitiveBuilder> B primitiveBuilder(PrimitiveType<? super B, ?, ?> type);
+
+  /**
    * Returns a list of map names.
    *
    * @return a list of map names
